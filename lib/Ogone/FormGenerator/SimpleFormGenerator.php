@@ -23,11 +23,16 @@ class SimpleFormGenerator implements FormGenerator
 	private $formName = 'ogone';
 
 	/** @return string */
-	public function render(PaymentRequest $paymentRequest)
+	public function render(PaymentRequest $paymentRequest, $query = false)
 	{
 		$this->paymentRequest = $paymentRequest;
 		ob_start();
-		include __DIR__.'/template/simpleForm.php';
+                if($query){
+                    include __DIR__.'/template/query.php';
+                }
+                else{
+                    include __DIR__.'/template/simpleForm.php';
+                }
 		return ob_get_clean();
 	}
 
